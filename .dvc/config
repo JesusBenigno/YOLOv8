@@ -1,0 +1,4 @@
+[core]
+    remote = s3_tesis
+['remote "s3_tesis"']
+    url = s3://dvc-tesis/storage/
