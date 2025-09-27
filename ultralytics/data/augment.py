@@ -1953,13 +1953,12 @@ class Albumentations:
 
             # Transforms
             T = [
-                A.Blur(p=0.01),
-                A.MedianBlur(p=0.01),
-                A.ToGray(p=0.01),
-                A.CLAHE(p=0.01),
-                A.RandomBrightnessContrast(p=0.0),
-                A.RandomGamma(p=0.0),
-                A.ImageCompression(quality_range=(75, 100), p=0.0),
+                A.Blur(blur_limit=(3,15),p=0.4),
+                A.CLAHE(clip_limit=4.0, tile_grid_size=(8, 8), p=0.3),
+                A.RandomBrightnessContrast(brightness_limit=(-0.3, 0.3),contrast_limit=(-0.3, 0.3),p=0.4),
+                A.ImageCompression(quality_range=(10, 40), p=0.2),
+                A.HueSaturationValue(hue_shift_limit=(-10,10), sat_shift_limit=(-30,30), val_shift_limit=(-20,20), p=0.5),
+                A.Sharpen(alpha=(0.2, 0.5), lightness=(0.5, 1.0), method='kernel', p=0.4)
             ]
 
             # Compose transforms

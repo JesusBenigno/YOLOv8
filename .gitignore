@@ -175,3 +175,4 @@ pnnx*
 # calibration image
 calibration_*.npy
 /Exp1.zip
+/Albumentations.zip
