@@ -1953,7 +1953,8 @@ class Albumentations:
 
             # Transforms
             T = [
-                A.Morphological(p=0.4, scale=9, operation="erosion") 
+                A.ToGray(p=1.0)
+                A.Morphological(p=0.3, scale=9, operation="erosion") 
             ]
 
             # Compose transforms
