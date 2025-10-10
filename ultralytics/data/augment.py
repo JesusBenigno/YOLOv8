@@ -1953,9 +1953,7 @@ class Albumentations:
 
             # Transforms
             T = [
-                A.Blur(blur_limit=(2,5),p=0.3),
-                A.RandomBrightnessContrast(brightness_limit=(-0.2, 0.2),contrast_limit=(-0.2, 0.2),p=0.3),
-                A.Sharpen(alpha=(0.2, 0.5), lightness=(0.5, 1.0), method='kernel', p=0.3)
+                A.Morphological(p=0.4, scale=(7, 9), operation="erosion") 
             ]
 
             # Compose transforms
