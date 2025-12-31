@@ -1951,11 +1951,20 @@ class Albumentations:
                 "XYMasking",
             }  # from https://albumentations.ai/docs/getting_started/transforms_and_targets/#spatial-level-transforms
 
-            # Transforms
-            T = [
-                A.ToGray(p=1.0),
-                A.Morphological(p=0.3, scale=9, operation="erosion") 
-            ]
+            # Transforms, use custom transforms if provided, otherwise use defaults
+            T = (
+                [
+                    A.Blur(p=0.01),
+                    A.MedianBlur(p=0.01),
+                    A.ToGray(p=0.01),
+                    A.CLAHE(p=0.01),
+                    A.RandomBrightnessContrast(p=0.0),
+                    A.RandomGamma(p=0.0),
+                    A.ImageCompression(quality_range=(75, 100), p=0.0),
+                ]
+                if transforms is None
+                else transforms
+            )
 
             # Compose transforms
             self.contains_spatial = any(transform.__class__.__name__ in spatial_transforms for transform in T)
